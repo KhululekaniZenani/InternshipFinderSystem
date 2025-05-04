@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internship Portal - Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 60px;
+            background: #f0f2f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .button {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 25px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .role-title {
+            font-size: 24px;
+            color: #333;
+        }
+        .role-container {
+            display: inline-block;
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .role-container h2 {
+            font-size: 20px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Internship Portal</h1>
+    <p class="role-title">Choose your role to continue</p>
+
+    <div class="dashboard-container">
+        <!-- Student Section -->
+        <div class="role-container">
+            <h2>Student</h2>
+            <p>View and apply for internships, update your profile, and more.</p>
+            <a href="student_dashboard.jsp" class="button">Student Dashboard</a><br>
+
+        </div>
+
+        <!-- Company Section -->
+        <div class="role-container">
+            <h2>Company</h2>
+            <p>Post internships, view applicants, and manage opportunities.</p>
+            <a href="company_home.jsp" class="button">Company Dashboard</a><br>
+   
+        </div>
+    </div>
+
+</body>
+</html>
