@@ -54,7 +54,7 @@
 <div class="confirmation-container">
     <h1>Company Registered Successfully!</h1>
     <p>Thank you for registering your company with us.</p>
-    <a href="index.jsp" class="btn-home">Return to Home</a>
+    <a href="index.html" class="btn-home">Return to Home</a>
 </div>
 
 </body>

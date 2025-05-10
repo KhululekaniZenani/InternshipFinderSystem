@@ -56,7 +56,7 @@
         <h2>Company Login</h2>
 
         <% 
-            String error = request.getParameter("error");
+            String error = (String)request.getAttribute("error");
             if (error != null) {
         %>
             <div class="error">Invalid email or password. Please try again.</div>

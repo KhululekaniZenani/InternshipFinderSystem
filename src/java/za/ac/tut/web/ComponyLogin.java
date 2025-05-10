@@ -23,21 +23,29 @@ public class ComponyLogin extends HttpServlet {
 
         // Fetch all companies from the database
         List<Company> companies = cfl.findAll();
+        Company company = null;
+        
 
-        // Check if the provided credentials match any company
-        for (Company company : companies) {
-            if (company.getEmail().equalsIgnoreCase(email) && company.getPassword().equals(password)) {
-                // Credentials are valid; forward to the dashboard
-                request.setAttribute("company", company);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("company_dashboard.jsp");
-                dispatcher.forward(request, response);
-                return;
+        
+        for(Company cmp : companies){
+            if(email.equalsIgnoreCase(cmp.getEmail()) && password.equals(cmp.getPassword())){
+                company = cmp;
+                
+                
+                break; 
             }
         }
-
-        // Credentials are invalid; forward back to the login page with an error message
-        request.setAttribute("error", "Invalid email or password. Please try again.");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("company_login.jsp");
-        dispatcher.forward(request, response);
+        
+        RequestDispatcher disp;
+        if(company != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("companyName", company.getCompanyName());
+            disp = request.getRequestDispatcher("company_dashboard.jsp");
+        } else {
+            request.setAttribute("error", "Invalid login credentials. Please try again");
+            disp = request.getRequestDispatcher("company_login.jsp");
+        }
+        
+        disp.forward(request, response);
     }
 }
