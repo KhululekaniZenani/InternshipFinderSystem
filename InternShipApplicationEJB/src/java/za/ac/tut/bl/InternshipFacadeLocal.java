@@ -23,7 +23,11 @@ public interface InternshipFacadeLocal {
     void remove(Internship internship);
 
     Internship find(Object id);
-
+    
+    List<Internship> findInternLoc(String loc);
+    
+    List<Internship> findInternComp(String comp);
+    
     List<Internship> findAll();
 
     List<Internship> findRange(int[] range);

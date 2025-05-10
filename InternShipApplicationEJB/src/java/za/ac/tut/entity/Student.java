@@ -1,38 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package za.ac.tut.entity;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-/**
- *
- * @author zenan
- */
 @Entity
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studentNum;
+
     private String name;
     private String surname;
+
+    @OneToOne
+    @JoinColumn(name = "internship_id", unique = true)
+    private Internship internship;
 
     public Student() {
     }
 
-    public Student(Long studentNum, String name, String surname) {
+    public Student(Long studentNum, String name, String surname, Internship internship) {
         this.studentNum = studentNum;
         this.name = name;
         this.surname = surname;
+        this.internship = internship;
     }
+
+    // Getters and Setters
 
     public Long getStudentNum() {
         return studentNum;
@@ -58,6 +55,14 @@ public class Student implements Serializable {
         this.surname = surname;
     }
 
+    public Internship getInternship() {
+        return internship;
+    }
+
+    public void setInternship(Internship internship) {
+        this.internship = internship;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -67,20 +72,15 @@ public class Student implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Student)) {
             return false;
         }
         Student other = (Student) object;
-        if ((this.studentNum == null && other.studentNum != null) || (this.studentNum != null && !this.studentNum.equals(other.studentNum))) {
-            return false;
-        }
-        return true;
+        return (this.studentNum != null || other.studentNum == null) && (this.studentNum == null || this.studentNum.equals(other.studentNum));
     }
 
     @Override
     public String toString() {
         return "za.ac.tut.entity.Student[ id=" + studentNum + " ]";
     }
-
 }

@@ -25,6 +25,9 @@ public class Internship implements Serializable {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
+    @OneToOne(mappedBy = "internship")
+    private Student student;
+
     public Internship() {
     }
 
@@ -37,6 +40,8 @@ public class Internship implements Serializable {
         this.deadline = deadline;
         this.company = company;
     }
+
+    // Getters and Setters
 
     public Long getInternshipId() {
         return internshipId;
@@ -94,6 +99,14 @@ public class Internship implements Serializable {
         this.company = company;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -107,7 +120,7 @@ public class Internship implements Serializable {
             return false;
         }
         Internship other = (Internship) object;
-        return !((this.internshipId == null && other.internshipId != null) || (this.internshipId != null && !this.internshipId.equals(other.internshipId)));
+        return (this.internshipId != null || other.internshipId == null) && (this.internshipId == null || this.internshipId.equals(other.internshipId));
     }
 
     @Override
